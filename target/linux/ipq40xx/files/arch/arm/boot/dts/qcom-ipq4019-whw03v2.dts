@@ -225,7 +225,8 @@
     };
 
     ethphy4: ethernet-phy@4 {
-        reg = <4>;
+        reg = <0x1c>;
+        #reg = <0x03>;
     };
 };
 
@@ -344,15 +345,15 @@
 					reg = <0x6 0x6>;
 				};
 
-                macaddr_wifi0: macaddr@0 {
+                macaddr_wifi0: macaddr@1006 {
 					reg = <0x1006 0x6>;
 				};
 
-                macaddr_wifi1: macaddr@0 {
+                macaddr_wifi1: macaddr@5006 {
 					reg = <0x5006 0x6>;
 				};
 
-                macaddr_wifi2: macaddr@0 {
+                macaddr_wifi2: macaddr@9006 {
 					reg = <0x9006 0x6>;
 				};
 			};
@@ -428,7 +429,7 @@
 			compatible = "qcom,ath10k";
 			reg = <0x00010000 0 0 0 0>;
 
-            qcom,ath10k-calibration-variant = "linksys-whw03v2";
+            qcom,ath10k-calibration-variant = "linksys-whw03v2-fcc";
 
             ieee80211-freq-limit = <5170000 5330000>;
             nvmem-cell-names = "pre-calibration", "mac-address";
@@ -491,7 +492,7 @@
 	status = "okay";
 };
 
-&swport4 {
+&swport1 {
 	status = "okay";
 	label = "ethernet0";
 
@@ -499,7 +500,7 @@
 	nvmem-cells = <&macaddr_gmac0>;
 };
 
-&swport5 {
+&swport2 {
 	status = "okay";
 	label = "ethernet1";
 
@@ -512,7 +513,7 @@
 	pinctrl-0 = <&wifi1_pins>;
 	pinctrl-names = "default";
 
-    qcom,ath10k-calibration-variant = "linksys-whw03v2";
+    qcom,ath10k-calibration-variant = "linksys-whw03v2-fcc";
 
     nvmem-cell-names = "pre-calibration", "mac-address";
     nvmem-cells = <&precal_art_1000>, <&macaddr_wifi0>;
@@ -522,7 +523,7 @@
 	status = "okay";
 	ieee80211-freq-limit = <5170000 5330000>;
 
-    qcom,ath10k-calibration-variant = "linksys-whw03v2";
+    qcom,ath10k-calibration-variant = "linksys-whw03v2-fcc";
     
     nvmem-cell-names = "pre-calibration", "mac-address";
     nvmem-cells = <&precal_art_5000>, <&macaddr_wifi1>;
