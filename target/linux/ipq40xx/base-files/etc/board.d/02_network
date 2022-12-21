@@ -24,9 +24,11 @@ ipq40xx_setup_interfaces()
 	p2w,r619ac-64m|\
 	p2w,r619ac-128m|\
 	pakedge,wr-1|\
-	zyxel,nbg6617\|
-	linksys,whw03v2)
+	zyxel,nbg6617)
 		ucidef_set_interfaces_lan_wan "lan1 lan2 lan3 lan4" "wan"
+		;;
+	linksys,whw03v2)
+		ucidef_set_interfaces_lan_wan "lan" "wan"
 		;;
 	8dev,jalapeno|\
 	alfa-network,ap120c-ac|\
