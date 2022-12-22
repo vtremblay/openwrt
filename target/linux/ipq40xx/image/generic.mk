@@ -722,7 +722,8 @@ define Device/linksys_whw03v2
 	UBINIZE_OPTS := -E 5    # EOD marks to "hide" factory sig at EOF
 	IMAGES += factory.bin
 	IMAGE/factory.bin  := append-kernel | pad-to $$$$(KERNEL_SIZE) | append-ubi | linksys-image type=WHW03v2
-	DEVICE_PACKAGES := ath10k-firmware-qca9888-ct ipq-wifi-linksys_whw03v2 kmod-leds-pca963x
+	DEVICE_PACKAGES := ath10k-firmware-qca9888-ct ipq-wifi-linksys_whw03v2 \
+	    -kmod-leds-gpio kmod-leds-pca963x kmod-spi-dev kmod-bluetooth
 endef
 TARGET_DEVICES += linksys_whw03v2
 

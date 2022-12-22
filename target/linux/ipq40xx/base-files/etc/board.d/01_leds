@@ -56,6 +56,10 @@ engenius,ens620ext)
 glinet,gl-ap1300)
 	ucidef_set_led_netdev "wan" "WAN" "green:wan" "eth1"
 	;;
+linksys,whw03v2)
+    ucidef_set_led_default "power" "POWER" "pca963x:blue" "1"
+    ucidef_set_led_netdev "lan" "LAN" "pca963x:green" "eth0" "link"
+    ;;
 mikrotik,cap-ac)
 	ucidef_set_led_default "power" "POWER" "blue:power" "1"
 	ucidef_set_led_default "user" "USER" "green:user" "0"

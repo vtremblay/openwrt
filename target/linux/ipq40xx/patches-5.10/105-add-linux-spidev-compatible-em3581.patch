@@ -1,0 +1,19 @@
+Add the "siliconlabs,em3581" compatible in spidev.
+
+This is needed for all devices using a Silicon Labs EM3581 chip 
+connected to the SPI interface to manage a Zigbee radio.
+
+Signed-off-by: Vincent Tremblay <vincent@vtremblay.dev>
+
+Index: linux-5.15.84/drivers/spi/spidev.c
+===================================================================
+--- linux-5.15.84.orig/drivers/spi/spidev.c
++++ linux-5.15.84/drivers/spi/spidev.c
+@@ -697,6 +697,7 @@ static const struct of_device_id spidev_
+ 	{ .compatible = "cisco,spi-petra" },
+ 	{ .compatible = "micron,spi-authenta" },
+ 	{ .compatible = "siliconlabs,si3210" },
++	{ .compatible = "siliconlabs,em3581" },
+ 	{},
+ };
+ MODULE_DEVICE_TABLE(of, spidev_dt_ids);
