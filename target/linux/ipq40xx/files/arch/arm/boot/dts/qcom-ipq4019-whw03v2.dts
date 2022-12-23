@@ -200,41 +200,36 @@
     pinctrl-0 = <&mdio_pins>;
     pinctrl-names = "default";
     phy-reset-gpio = <&tlmm 19 GPIO_ACTIVE_LOW>;
+};
 
-    ethphy0: ethernet-phy@0 {
-        status = "disabled";
-        reg = <0x18>;
-        #reg = <0x00>;
-    };
+&ethphy0: {
+    status = "disabled";
+};
 
-    ethphy1: ethernet-phy@1 {
-        status = "disabled";
-        reg = <0x19>;
-        #reg = <0x01>;
-    };
+&ethphy1 {
+    status = "disabled";
+};
 
-    ethphy2: ethernet-phy@2 {
-        status = "disabled";
-        reg = <0x1a>;
-        #reg = <0x02>;
-    };
+&ethphy2 {
+    status = "disabled";
+};
 
-    ethphy3: ethernet-phy@3 {
-        status = "okay";
-        reg = <0x1b>;
-        #reg = <0x03>;
-    };
+&ethphy3: {
+    status = "okay";
+    reg = <0x1b>;
+    #reg = <0x03>;
+};
 
-    ethphy4: ethernet-phy@4 {
-        status = "okay";
-        reg = <0x1c>;
-        #reg = <0x04>;
-    };
+&ethphy4: {
+    status = "okay";
+    reg = <0x1c>;
+    #reg = <0x04>;
+};
 
-    psgmiiphy: psgmii-phy@5 {
-        reg = <0x1d>;
-        #reg = <0x05>;
-     };
+&psgmiiphy: {
+    status = "okay";
+    reg = <0x1d>;
+    #reg = <0x05>;
 };
 
 &watchdog {
