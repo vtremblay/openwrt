@@ -17,14 +17,11 @@
         led-upgrade = &led_red;
     };
 
+    // The arguments rootfstype and ro are needed
+    // to override the default bootargs
     chosen {
         bootargs-append = " root=/dev/ubiblock0_0 rootfstype=squashfs ro";
         stdout-path = &blsp1_uart1;
-    };
-
-    memory {
-        device_type = "memory";
-        reg = <0x80000000 0x10000000>;
     };
 
     soc {
@@ -107,23 +104,14 @@
     };
 
     spi_0_pins: spi_0_pinmux {
-        pinmux {
+        mux {
             function = "blsp_spi0";
-            pins = "gpio13", "gpio14", "gpio15";
-        };
-
-        pinmux_cs {
-            function = "gpio";
-            pins = "gpio12";
-        };
-
-        pinconf {
             pins = "gpio13", "gpio14", "gpio15";
             drive-strength = <12>;
             bias-disable;
         };
 
-        pinconf_cs {
+        mux_cs {
             pins = "gpio12";
             drive-strength = <2>;
             bias-disable;
@@ -132,38 +120,28 @@
     };
     
     spi_1_pins: spi_1_pinmux {
-        cs {
-            pins = "gpio45";
-            function = "gpio";
-            bias-pull-up;
+        mux_1 {
+            function = "blsp_spi1";
+            pins = "gpio44", "gpio46","gpio47";
+            bias-disable;
         };
 
-        host_int {
+        mux_2 {
+            pins = "gpio31", "gpio45", "gpio49";
+            function = "gpio";
+            bias-pull-up;
+            output-high;
+        };
+
+        mux_3 {
             pins = "gpio42";
             function = "gpio";
             input;
         };
-
-        mux {
-            pins = "gpio44", "gpio46", "gpio47";
-            function = "blsp_spi1";
-            bias-disable;
-        };
-
-        reset {
-            pins = "gpio49";
-            function = "gpio";
-            output-high;
-        };
-
-        wake {
-            pins = "gpio31";
-            function = "gpio";
-            output-high;
-        };
     };
 
     wifi_0_pins: wifi0_pinmux {
+        // Bluetooth coexist pin
         mux {
             bias-pull-up;
             drive-strength = <6>;
@@ -199,10 +177,10 @@
     status = "okay";
     pinctrl-0 = <&mdio_pins>;
     pinctrl-names = "default";
-    phy-reset-gpio = <&tlmm 19 GPIO_ACTIVE_LOW>;
+    phy-reset-gpios = <&tlmm 19 GPIO_ACTIVE_LOW>;
 };
 
-&ethphy0: {
+&ethphy0 {
     status = "disabled";
 };
 
@@ -214,19 +192,19 @@
     status = "disabled";
 };
 
-&ethphy3: {
+&ethphy3 {
     status = "okay";
     reg = <0x1b>;
     #reg = <0x03>;
 };
 
-&ethphy4: {
+&ethphy4 {
     status = "okay";
     reg = <0x1c>;
     #reg = <0x04>;
 };
 
-&psgmiiphy: {
+&psgmiiphy {
     status = "okay";
     reg = <0x1d>;
     #reg = <0x05>;
@@ -325,7 +303,7 @@
             label = "blue";
             color = <LED_COLOR_ID_BLUE>;
             function = LED_FUNCTION_INDICATOR;
-            linux,default-trigger = "none";
+            linux,default-trigger = "default-on";
             reg = <2>;
         };
     };
@@ -465,9 +443,9 @@
 &pcie0 {
     status = "okay";
 
-    perst-gpio = <&tlmm 38 GPIO_ACTIVE_LOW>;
-    wake-gpio = <&tlmm 40 GPIO_ACTIVE_LOW>;
-    clkreq-gpio = <&tlmm 39 GPIO_ACTIVE_LOW>;
+    perst-gpios = <&tlmm 38 GPIO_ACTIVE_LOW>;
+    wake-gpios = <&tlmm 40 GPIO_ACTIVE_LOW>;
+    clkreq-gpios = <&tlmm 39 GPIO_ACTIVE_LOW>;
 
     bridge@0,0 {
         reg = <0x00000000 0 0 0 0>;
