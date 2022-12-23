@@ -172,6 +172,27 @@
             pins = "gpio52";
         };
     };
+
+    
+    zigbee_0 {
+        gpio-hog;
+        gpios = <29 GPIO_ACTIVE_HIGH>;
+        bias-disable;
+        output-low;
+    };
+
+    zigbee_1 {
+        gpio-hog;
+        gpios = <50 GPIO_ACTIVE_HIGH>;
+        bias-disable;
+        input;
+    };
+
+    bluetooth_enable {
+        gpio-hog;
+        gpios = <32 GPIO_ACTIVE_HIGH>;
+        output-high;
+    };
 };
 
 &mdio {
@@ -229,7 +250,7 @@
 };
 
 &cryptobam {
-    num-channels = <12>;
+    num-channels = <4>;
     qcom,num-ees = <2>;
 
     status = "okay";
@@ -265,9 +286,9 @@
 
     cs-gpios = <&tlmm 45 GPIO_ACTIVE_HIGH>;
 
-    spidev1: spi@0 {
+    zigbee@0 {
         #address-cells = <1>;
-        #size-cells = <1>;
+        #size-cells = <0>;
 
         compatible = "siliconlabs,em3581";
         reg = <0>;
