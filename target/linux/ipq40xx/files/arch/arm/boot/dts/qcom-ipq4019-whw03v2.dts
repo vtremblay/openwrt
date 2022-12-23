@@ -114,14 +114,14 @@
 
         pinmux_cs {
             function = "gpio";
-			pins = "gpio12";
+            pins = "gpio12";
         };
 
-		pinconf {
-			pins = "gpio13", "gpio14", "gpio15";
-			drive-strength = <12>;
-			bias-disable;
-		};
+        pinconf {
+            pins = "gpio13", "gpio14", "gpio15";
+            drive-strength = <12>;
+            bias-disable;
+        };
 
         pinconf_cs {
             pins = "gpio12";
