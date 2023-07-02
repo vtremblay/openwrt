@@ -165,7 +165,6 @@
 	};
 
 	bluetooth-enable {
-		gpio-hog;
 		gpios = <32 GPIO_ACTIVE_HIGH>;
 		output-high;
 	};
